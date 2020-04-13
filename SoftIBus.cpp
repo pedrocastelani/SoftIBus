@@ -1,13 +1,13 @@
 #include <Arduino.h>
 #include "SoftIBus.h"
 #include "SoftwareSerial.h"
-FlySkyIBus IBus;
-void FlySkyIBus::begin(SoftwareSerial& serial)
+SIBus IBus;
+void SIBus::begin(SoftwareSerial& serial)
 {
   begin((Stream&)serial);
 }
 
-void FlySkyIBus::begin(Stream& stream)
+void SIBus::begin(Stream& stream)
 {
   this->stream = &stream;
   this->state = DISCARD;
@@ -18,7 +18,7 @@ void FlySkyIBus::begin(Stream& stream)
   this->lchksum = 0;
 }
 
-void FlySkyIBus::loop(void)
+void SIBus::loop(void)
 {
   while (stream->available() > 0)
   {
@@ -89,7 +89,7 @@ void FlySkyIBus::loop(void)
   }
 }
 
-uint16_t FlySkyIBus::readChannel(uint8_t channelNr)
+uint16_t SIBus::readChannel(uint8_t channelNr)
 {
   if (channelNr < PROTOCOL_CHANNELS)
   {
