@@ -10,7 +10,7 @@ void setup()
 
 void loop() 
 {
-  IBus.loop();
+  SIBus.loop();
   Serial.print(SIBus.readChannel(0), DEC);
   Serial.print("\t");
   Serial.print(SIBus.readChannel(1), DEC);
