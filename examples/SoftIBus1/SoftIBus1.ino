@@ -1,5 +1,4 @@
 #include "SoftIBus.h"
-#include "SoftwareSerial.h"
 SoftwareSerial IBuspin(2, 3);
 void setup() 
 { 
