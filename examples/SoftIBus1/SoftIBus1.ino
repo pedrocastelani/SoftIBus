@@ -5,11 +5,11 @@ void setup()
 { 
   IBuspin.begin(115200);
   Serial.begin(115200);
-  SIBus.begin(IBuspin);
+  IBus.begin(IBuspin);
 }
 
 void loop() 
 {
-  SIBus.loop();
-  Serial.print(SIBus.readChannel(0), DEC);
+  IBus.loop();
+  Serial.print(IBus.readChannel(0), DEC);
 }
