@@ -38,4 +38,4 @@ private:
   uint8_t lchksum;
 };
 
-extern SIBus IBus;
+extern SIBus SIBus;
