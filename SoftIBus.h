@@ -3,7 +3,7 @@
 class SoftwareSerial;
 class Stream;
 
-class FlySkyIBus
+class SIBus
 {
 public:
   void begin(SoftwareSerial& serial);
@@ -38,4 +38,4 @@ private:
   uint8_t lchksum;
 };
 
-extern FlySkyIBus IBus;
+extern SIBus IBus;
