@@ -10,5 +10,5 @@ void setup()
 void loop() 
 {
   IBus.loop();
-  Serial.print(IBus.readChannel(0), DEC);//get channel 1 (real channel-1= IBus channel) values in DEC format, from 1000 to 2000 if limits set to 100% on transmitter (endpoints are 900 and 2100)
+  Serial.print(IBus.readChannel(0));//get channel 1 (real channel-1= IBus channel) values in DEC format, from 1000 to 2000 if limits set to 100% on transmitter (endpoints are 900 and 2100)
 }
