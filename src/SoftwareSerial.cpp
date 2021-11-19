@@ -41,7 +41,7 @@ http://arduiniana.org.
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
 #include <Arduino.h>
-#include <SoftwareSerial.h>
+#include "SoftwareSerial.h"
 #include <util/delay_basic.h>
 
 //
@@ -232,17 +232,21 @@ ISR(PCINT0_vect)
 #endif
 */
 #if defined(PCINT1_vect)
-ISR(PCINT1_vect, ISR_ALIASOF(PCINT0_vect));
+ISR(PCINT1_vect)
+{
+SoftwareSerial::handle_interrupt();
+/*ISR(PCINT1_vect, ISR_ALIASOF(PCINT0_vect)); */
+}
 #endif
 
 #if defined(PCINT2_vect)
-ISR(PCINT2_vect, ISR_ALIASOF(PCINT0_vect));
+ISR(PCINT2_vect, ISR_ALIASOF(PCINT1_vect));
 #endif
-
+/*
 #if defined(PCINT3_vect)
 ISR(PCINT3_vect, ISR_ALIASOF(PCINT0_vect));
 #endif
-
+*/
 //
 // Constructor
 //
