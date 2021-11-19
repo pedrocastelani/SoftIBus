@@ -7,7 +7,6 @@ Furthermore, I wished to use the Arduino to receive Ibus values but also write s
 
 Any comments are welcome, especially ideas for improvements and such.
 
-RUS Readme
 ##
 Библиотека Arduino для чтения значений протокола RC FlySky Ibus через библиотеку SoftwareSerial
 
