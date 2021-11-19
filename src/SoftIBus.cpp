@@ -29,7 +29,7 @@ void SIBus::loop(void)
     }
     last = now;
     
-    uint8_t v = stream->read();
+   uint16_t v = stream->read(); /* uint8_t v = stream->read(); */
     switch (state)
     {
       case GET_LENGTH:
