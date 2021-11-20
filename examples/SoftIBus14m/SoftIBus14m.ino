@@ -23,7 +23,7 @@ void setup()
 
 void loop()
 {
-  static int inibus;
+  static uint16_t inibus;
   IBus.loop();
   for (int i = 0; i < ch; i++)
   {
