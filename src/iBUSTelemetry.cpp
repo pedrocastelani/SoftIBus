@@ -18,7 +18,7 @@
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
 #include <Arduino.h>
-#include <iBUSTelemetry.h>
+#include "iBUSTelemetry.h"
 #include <util/delay_basic.h>
 
 iBUSTelemetry * iBUSTelemetry::active_object = 0;
