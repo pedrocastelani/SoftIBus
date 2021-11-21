@@ -20,7 +20,7 @@
 
 #include <inttypes.h>
 #include <Stream.h>
-#include <iBUSSensors.h>
+#include "iBUSSensors.h"
 
 #define _SS_MAX_RX_BUFF 64 // RX buffer size
 #ifndef GCC_VERSION
