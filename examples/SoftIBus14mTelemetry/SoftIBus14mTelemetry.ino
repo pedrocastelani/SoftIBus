@@ -1,7 +1,7 @@
 #include <iBUSTelemetry.h>
 #include "SoftIBus.h"             // SoftIBus library
-SoftwareSerial IBuspin(14, 15);   // "serial" port on which we will be running the IBus connection. 
-                                  // Since to read values we only need the Rx, just connect pin D14 and leave D15 open
+SoftwareSerial IBuspin(8, 9);     // "serial" port on which we will be running the IBus connection. 
+                                  // Since to read values we only need the Rx, just connect pin D8 and leave D9 open
 
 // *** ВАЖНО!!! *** ЧИТАТЬ ВНИМАТЕЛЬНО!!! ***
 // Так как библиоткека iBUSTelemetry.h использует прерывание PCINT0 во избежание конфликта
@@ -10,13 +10,13 @@ SoftwareSerial IBuspin(14, 15);   // "serial" port on which we will be running t
 // Информация актуальна при совместном использовании библиотек SoftIBus.h и iBUSTelemetry.h
 /*
     D8 .. D13 - генерируют запрос прерывания PCINT0
-    A0 .. A5  - генерируют запрос прерывания PCINT1
+    A0 .. A5  - генерируют запрос прерывания PCINT1 (D14 - D19)
     D0 .. D7  - генерируют запрос прерывания PCINT2
 */
 int ch = 14;                      // число каналов радиоаппаратуры RC
 
 #define UPDATE_INTERVAL 500
-iBUSTelemetry telemetry(11); // I use only PCINT0 interrupt vector, so you can use D8 to D13 pins.
+iBUSTelemetry telemetry(7); // I use only PCINT2 interrupt vector, so you can use D2 to D7 pins.
 
 uint32_t prevMillis = 0; // Necessary to updateValues() method. Look below.
 float i = 0;
