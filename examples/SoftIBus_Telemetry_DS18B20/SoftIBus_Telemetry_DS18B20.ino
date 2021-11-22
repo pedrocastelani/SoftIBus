@@ -54,6 +54,7 @@ void setup()
   /*5*/ telemetry.addSensor(IBUS_MEAS_TYPE_ARMED);
   /*6*/ telemetry.addSensor(IBUS_MEAS_TYPE_FLIGHT_MODE);
   /*7*/ telemetry.addSensor(IBUS_MEAS_TYPE_ALT);
+  /*8*/ telemetry.addSensor(IBUS_MEAS_TYPE_GPS_LON);
 
   pinMode(3, OUTPUT);
   digitalWrite(3, HIGH);
@@ -168,12 +169,12 @@ void updateValues()
 
     telemetry.setSensorValue(3, 123 * 10);
 
-    telemetry.setSensorValue(4, 179583647); // You can set LAT / LON using FP metohod, but due to fact floats have only 6 digits precision,
+    telemetry.setSensorValue(4, 442283740); // You can set LAT / LON using FP metohod, but due to fact floats have only 6 digits precision,
     // your values on tx may be corrupted in some cases. It's better to use setSensorValue().
 
     telemetry.setSensorValue(5, UNARMED); // ARMED / UNARMED or 1 / 0 could be used.
 
-    telemetry.setSensorValue(6, LOITER); // Available flight modes:     STAB   0
+    telemetry.setSensorValue(6, CIRCLE); // Available flight modes:     STAB   0
     // ACRO   1
     // AHOLD  2
     // AUTO   3
@@ -184,7 +185,8 @@ void updateValues()
     // PHOLD  8
     // LAND   9
 
-    telemetry.setSensorValueFP(7, 54.87);
+    telemetry.setSensorValueFP(7, 504.87);
+    telemetry.setSensorValue(8, 420482790); 
 
     i += 0.1;
     if (i > 50)
