@@ -1,3 +1,5 @@
+// #define DEBUG // В рабочей версии замаркировать определение
+
 #include <iBUSTelemetry.h>
 #include "SoftIBus.h"             // SoftIBus library
 SoftwareSerial IBuspin(8, 9);     // "serial" port on which we will be running the IBus connection.
@@ -31,29 +33,30 @@ volatile float temperature;
 unsigned long timing;
 unsigned long t1;
 unsigned long t2;
-uint16_t t_convert = 500; // врененной цикл запроса температуры, мин. 750
+uint16_t t_convert = 750; // врененной цикл запроса температуры, мин. 750
 
 
 void setup()
 {
   IBuspin.begin(115200);//the softserial port has to begin at this baud prior to starting it as the IBus port
+#ifdef DEBUG
   Serial.begin(115200);//hardserial for debigging
+#endif
   IBus.begin(IBuspin);//start the IBus object
   telemetry.begin(); // Let's start having fun!
 
-  telemetry.addSensor(0x01); // You can use sensors definitions from iBUSSensors.h instead of numbers.
+  /*1*/  telemetry.addSensor(0x01); // You can use sensors definitions from iBUSSensors.h instead of numbers.
   // Ex.: telemetry.addSensor(IBUS_MEAS_TYPE_TEM);
 
-  telemetry.addSensor(IBUS_MEAS_TYPE_GPS_STATUS);
-  telemetry.addSensor(IBUS_MEAS_TYPE_SPE);
-  telemetry.addSensor(IBUS_MEAS_TYPE_GPS_LAT);
-  telemetry.addSensor(IBUS_MEAS_TYPE_ARMED);
-  telemetry.addSensor(IBUS_MEAS_TYPE_FLIGHT_MODE);
-  telemetry.addSensor(IBUS_MEAS_TYPE_ALT);
+  /*2*/ telemetry.addSensor(IBUS_MEAS_TYPE_GPS_STATUS);
+  /*3*/ telemetry.addSensor(IBUS_MEAS_TYPE_SPE);
+  /*4*/ telemetry.addSensor(IBUS_MEAS_TYPE_GPS_LAT);
+  /*5*/ telemetry.addSensor(IBUS_MEAS_TYPE_ARMED);
+  /*6*/ telemetry.addSensor(IBUS_MEAS_TYPE_FLIGHT_MODE);
+  /*7*/ telemetry.addSensor(IBUS_MEAS_TYPE_ALT);
 
   pinMode(3, OUTPUT);
   digitalWrite(3, HIGH);
-  Serial.begin(115200);
   int ii = 0;
 
 label:
@@ -61,8 +64,10 @@ label:
   {
     if ( !ds.search(addr))
     { // пока возвращаемый адрес == 0
+#ifdef DEBUG
       Serial.println F("No more addresses.");
       Serial.println(addr[8]);
+#endif
       ds.reset_search();
       delay(250);
       ++ii;
@@ -71,7 +76,9 @@ label:
 
     if (OneWire::crc8(addr, 7) != addr[7])
     { //проверка массива адреса на CRC-8
+#ifdef DEBUG
       Serial.println F("CRC is not valid!");
+#endif
       ++ii; goto label;
     }
   }
@@ -80,7 +87,7 @@ label:
   ds.write(0x4E);  // разрешение записать конфиг
   ds.write(0x7F);  // Th контроль температуры макс 128грд
   ds.write(0xFF);  // Tl контроль температуры мин -128грд
-  ds.write(0x00);  // 0x60 12-бит разрешение, 0x00 9-бит разрешение
+  ds.write(0x60);  // 0x60 12-бит разрешение, 0x00 9-бит разрешение
   ds.write(0x1F);  // точность 0,5гр = 1F; 0,25гр = 3F; 0,125гр = 5F; 0,0625гр = 7F;
 
   // запросим температуру, считывать будем по таймеру
@@ -92,6 +99,7 @@ label:
 
 void loop()
 {
+#ifdef DEBUG
   static uint16_t inibus;
   IBus.loop();
   for (int i = 0; i < ch; i++)
@@ -101,10 +109,14 @@ void loop()
     {
       Serial.print(inibus);
       Serial.print("\t");
+
     } else {
+
       Serial.println(inibus);
     }
   }
+#endif
+
   updateValues(); // Very important! iBUS protocol is very sensitive to timings.
   // DO NOT USE ANY delay()! Look at updateValues() method.
   // It's an example of how to use intervals without delays.
@@ -128,13 +140,15 @@ void updateValues()
 
     if (OneWire::crc8(data, 8) != data[8])
     { // проверка CRC считанной температуры.
+#ifdef DEBUG
       Serial.println F("Data CRC is not valid!");
+#endif
     } else {
 
       temp = (data[1] << 8) | data[0]; // Переводим в температуру
       if (data[7] == 0x10) temp = (temp & 0xFFF0) + 12 - data[6];
       if ((temp == 0) && (data[5] < 0xFF)) zero++;
-      temperature = (float)temp / 16.0;
+      temperature = (float)temp / 16.00;
 
       ds.reset();
       ds.write(0xCC);                       // Обращение ко всем датчикам
