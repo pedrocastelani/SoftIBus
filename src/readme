@@ -14,3 +14,21 @@
     Передача телеметрии
     D0 .. D7  - генерируют запрос прерывания PCINT2
 */
+
+#
+Features of libraries.
+The SoftwareSerial library is used to receive a signal over the IBUS bus, adapted,
+uses PCINT0 and PCINT1 interrupts. The PCINT2 interrupt is allocated for telemetry.
+In the original telemetry library, the PCINT0 interrupt was used, the library
+was switched to the PCINT2 interrupt. This is done so that when an interrupt
+occurs and PCINT0,1 and PCINT2, the IBOC signal reception procedure is processed first
+
+Pins used:
+/*
+Receiving RC channels
+D8 .. D13 - generate a PCINT0 interrupt request
+A0 .. A5 - generate a PCINT1 interrupt request
+
+Transmission of telemetry
+D0 .. D7 - generate a PCINT2 interrupt request
+*/
