@@ -59,7 +59,11 @@
 #define IBUS_MEAS_TYPE_FLIGHT_MODE    0x16 // Flight mode (Режим полета)
 
 #define IBUS_MEAS_TYPE_PRES           0x41 // Pressure (Давление)
-#define IBUS_MEAS_TYPE_SPE            0x7e // Speed km/h (Скорость км/ч)
+#define IBUS_MEAS_TYPE_ODO1           0x7c // Odometer1
+#define IBUS_MEAS_TYPE_ODO2           0x7d // Odometer2
+#define IBUS_MEAS_TYPE_SPE            0x7e // Speed km/h (Скорость км/ч)//2byte km/h
+#define IBUS_MEAS_TYPE_TX_V           0x7f // TX Voltage
+
 
 // 4 byte sensors
 
@@ -74,5 +78,19 @@
 #define IBUS_MEAS_TYPE_S88     0x88
 #define IBUS_MEAS_TYPE_S89     0x89
 #define IBUS_MEAS_TYPE_S8a     0x8a
+
+/*
+//#define IBUS_MEAS_TYPE_ALT_FLYSKY		0xf9    // Altitude			//2 bytes signed in m
+#define IBUS_MEAS_TYPE_SNR				0xfa    // SNR
+#define IBUS_MEAS_TYPE_NOISE			0xfb    // Noise
+#define IBUS_MEAS_TYPE_RSSI				0xfc    // RSSI
+#define IBUS_MEAS_TYPE_ERR				0xfe    // Error rate
+#define IBUS_MEAS_TYPE_UNKNOWN			0xff
+
+
+#define IBUS_MEAS_TYPE_GPS_FULL			0xfd
+#define IBUS_MEAS_TYPE_VOLT_FULL		0xf0
+#define IBUS_MEAS_TYPE_ACC_FULL			0xef
+*/
 
 #endif // ifndef iBUSSensors_h
