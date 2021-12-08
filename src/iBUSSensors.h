@@ -81,16 +81,16 @@
 
 /*
 //#define IBUS_MEAS_TYPE_ALT_FLYSKY		0xf9    // Altitude			//2 bytes signed in m
-#define IBUS_MEAS_TYPE_SNR				0xfa    // SNR
-#define IBUS_MEAS_TYPE_NOISE			0xfb    // Noise
-#define IBUS_MEAS_TYPE_RSSI				0xfc    // RSSI
-#define IBUS_MEAS_TYPE_ERR				0xfe    // Error rate
-#define IBUS_MEAS_TYPE_UNKNOWN			0xff
+#define IBUS_MEAS_TYPE_SNR      0xfa // SNR
+#define IBUS_MEAS_TYPE_NOISE    0xfb // Noise
+#define IBUS_MEAS_TYPE_RSSI     0xfc // RSSI
+#define IBUS_MEAS_TYPE_ERR      0xfe // Error rate
+#define IBUS_MEAS_TYPE_UNKNOWN  0xff
 
 
-#define IBUS_MEAS_TYPE_GPS_FULL			0xfd
-#define IBUS_MEAS_TYPE_VOLT_FULL		0xf0
-#define IBUS_MEAS_TYPE_ACC_FULL			0xef
+#define IBUS_MEAS_TYPE_GPS_FULL   0xfd
+#define IBUS_MEAS_TYPE_VOLT_FULL  0xf0
+#define IBUS_MEAS_TYPE_ACC_FULL   0xef
 */
 
 #endif // ifndef iBUSSensors_h
