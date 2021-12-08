@@ -35,7 +35,7 @@
 #define ARMED          1
 
 // 2 byte sensors
-#define IBUS_MEAS_TYPE_INTV				    0x00 // Internal Voltage
+#define IBUS_MEAS_TYPE_INTV           0x00 // Internal Voltage
 #define IBUS_MEAS_TYPE_TEM            0x01 // Temperature
 #define IBUS_MEAS_TYPE_EXTV           0x03 // External voltage (Внешнее напряжение)
 #define IBUS_MEAS_TYPE_CELL           0x04 // Avg cell voltage(Среднее напряжение ячейки)
