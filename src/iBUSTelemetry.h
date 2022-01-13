@@ -49,14 +49,14 @@ private:
     static volatile uint8_t _receive_buffer_head;
     static iBUSTelemetry * active_object;
 
-    void
+    inline void
     recv() __attribute__((__always_inline__));
     uint8_t
     rx_pin_read();
 
     void
     setPin(uint8_t pin);
-    void
+    inline void
     setRxIntMsk(bool enable) __attribute__((__always_inline__));
 
     static uint16_t
@@ -107,3 +107,4 @@ public:
     static inline void handle_interrupt() __attribute__((__always_inline__));
 };
 #endif // ifndef iBUSTelemetry_h
+
